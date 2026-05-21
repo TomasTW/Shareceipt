@@ -1,0 +1,117 @@
+/* ==========================================
+   SHARECEIPT DESIGN SYSTEM - TOKENS
+   Design tokens extracted from Pencil design
+   ========================================== */
+
+:root {
+  /* COLOR TOKENS - PRIMARY */
+  --color-primary: #0d9488;
+  --color-primary-dark: #0a7368;
+  --color-primary-light: #14b8a6;
+
+  /* COLOR TOKENS - NEUTRAL */
+  --color-white: #fffefdd;
+  --color-light-bg: #f9f9fc;
+  --color-grey-light: #bccac0;
+  --color-grey: #666666;
+  --color-grey-dark: #2b2b2b;
+  --color-black: #1a1a1a;
+
+  /* BACKGROUND COLORS */
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-light-bg);
+  --bg-accent: var(--color-primary);
+
+  /* TEXT COLORS */
+  --text-primary: var(--color-grey-dark);
+  --text-secondary: var(--color-grey);
+  --text-light: var(--color-grey-light);
+  --text-inverse: var(--color-white);
+
+  /* TYPOGRAPHY */
+  --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-mono: 'Courier New', monospace;
+
+  /* FONT SIZES */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 32px;
+
+  /* FONT WEIGHTS */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* LINE HEIGHTS */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.5;
+
+  /* SPACING SCALE */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+
+  /* BORDER RADIUS */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* SHADOWS */
+  --shadow-sm: 0 0.875px 0.875px rgba(20, 0, 74, 0.169), 0 0.875px 0.875px rgba(20, 0, 74, 0.144);
+  --shadow-md: 0 1.75px 1.75px rgba(20, 0, 74, 0.094), 0 1.75px 1.75px rgba(20, 0, 74, 0.032);
+  --shadow-lg: 0 3.5px 3.5px rgba(20, 0, 74, 0.05), 0 3.5px 3.5px rgba(20, 0, 74, 0);
+  --shadow-xl: 0 0.875px 0.875px rgba(20, 0, 74, 0.169), 0 0.875px 0.875px rgba(20, 0, 74, 0.144), 0 1.75px 1.75px rgba(20, 0, 74, 0.094), 0 1.75px 1.75px rgba(20, 0, 74, 0.032);
+
+  /* TRANSITIONS */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* TYPOGRAPHY STYLES */
+.text-heading-1 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.text-heading-2 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.text-heading-3 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+}
+
+.text-body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+}
+
+.text-small {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
