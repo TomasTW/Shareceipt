@@ -116,7 +116,7 @@ class FriendManager {
 
     initializeFriends() {
         this.friendListElement.empty();
-        this.addFriend('Friend1');
+        this.addFriend('Amelia');
     }
     initializeItems() {
         this.itemsListElement.empty();
@@ -146,14 +146,31 @@ class FriendManager {
         this.friends.forEach(friend => {
             let friendElement = this.friendListElement.find(`.friend-name[data-id="${friend.id}"]`);
             if (!friendElement.length) {
+                // Determine Initials or photo placeholder
+                let initials = 'ME';
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
+                    initials = friend.name.substring(0, 2).toUpperCase();
+                }
+                
                 this.friendListElement.append(`
-                    <div class="friend">
-                        <span class="friend-name" data-id="${friend.id}" style="border: 2px solid ${friend.rgbString};">${friend.name}</span>
-                        <button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="friend" data-id="${friend.id}">
+                        <div class="friend-avatar-container">
+                            <div class="friend-avatar" style="background-color: ${friend.rgbString};">
+                                ${initials}
+                            </div>
+                            <button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <span class="friend-name" data-id="${friend.id}">${friend.name}</span>
                     </div>
                 `);
             } else {
                 friendElement[0].innerHTML = friend.name;
+                // Update avatar initials if name changed
+                let initials = 'ME';
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
+                    initials = friend.name.substring(0, 2).toUpperCase();
+                }
+                $(friendElement).closest('.friend').find('.friend-avatar').text(initials);
             }
         });
 
@@ -200,15 +217,32 @@ class FriendManager {
                 const percentage = item.getParticipantPercentage(friendId);
                 let friend = this.friends.get(friendId);
 
+                let initials = 'ME';
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
+                    initials = friend.name.substring(0, 2).toUpperCase();
+                }
+
                 $($(div).find('label')).html( `
-                    <div class="text-center align-middle">
-                        <div class="d-block d-sm-inline">${friend.name}&emsp;</div>
-                        <div class="d-inline">
+                    <div class="participant-row-inner">
+                        <div class="participant-avatar" style="background-color: ${friend.rgbString};" title="${friend.name}">
+                            ${initials}
+                        </div>
+                        <div class="participant-input-wrapper">
                             <input type="number" value="${percentage}" min="0" max="100" step="1" class="percentage-input" ${item.getParticipantChecked(friendId) === false ? "disabled" : ""}> 
-                            ${item.getUnitType() == ItemType.kTypePercent ? '%' : 'share(s)'}
+                            <span class="unit-text">${item.getUnitType() == ItemType.kTypePercent ? '%' : 'share(s)'}</span>
+                        </div>
+                        <div class="participant-toggle-box">
+                            <i class="fa-solid fa-xmark"></i>
                         </div>
                     </div>
                 `);
+                // Sync input value display
+                const pInput = $(div).find('.percentage-input');
+                if (percentage !== undefined && !isNaN(percentage)) {
+                    pInput.val(percentage);
+                } else {
+                    pInput.val('');
+                }
                 // $(div).find('input[type="number"]')[0].placeholder = Math.round(100 / numFriends * 100) / 100;
                 item.setParticipant(friendId, percentage, percentage === undefined ? true : item.getParticipantChecked(friendId));
                 this.bindItemEvents();
@@ -236,34 +270,68 @@ class FriendManager {
                 $(div).remove();
             }
         });
+
+        // Toggle empty-state class on card body
+        const $cardBody = this.itemsListElement.closest('.card-body');
+        if (this.items.size === 0) {
+            $cardBody.addClass('empty-state');
+        } else {
+            $cardBody.removeClass('empty-state');
+        }
         
-        let index = 1;
         this.items.forEach((item, key) => {
             let itemElement = this.itemsListElement.find(`.item[data-id="${item.id}"]`);
             if (!itemElement.length) {
                 this.itemsListElement.append(`
-                    <div class="item p-sm-2"  data-id="${item.id}">
-                        <button id="item-collapse-btn-${item.id}" class="collapse-btn" data-bs-toggle="collapse" data-bs-target="#item-container-${item.id}" aria-expanded="true" aria-controls="item-container-${item.id}">
-                            <i style="font-size:24px" class="fa">&#xf107;</i>
-                        </button>
-                        <button class="delete-btn"><i class="fa-solid fa-xmark"></i></button>
-                        <div class="item-head">&emsp;</div>
+                    <div class="item" data-id="${item.id}">
+                        <!-- Dummy elements to satisfy legacy script assumptions -->
+                        <label style="display: none;"></label>
+                        <div class="item-head" style="display: none;">&emsp;</div>
+
+                        <!-- Expanded header: caret + inputs + delete -->
+                        <div class="item-header-row item-expanded-row">
+                            <button id="item-collapse-btn-${item.id}" class="collapse-btn collapse-green-btn" data-bs-toggle="collapse" data-bs-target="#item-container-${item.id}" aria-expanded="true" aria-controls="item-container-${item.id}">
+                                <i class="fa-solid fa-caret-up"></i>
+                            </button>
+                            
+                            <div class="item-name-wrapper">
+                                <input type="text" class="item-name" id="item-name-${item.id}" value="${item.name}" placeholder="Items">
+                            </div>
+                            
+                            <div class="item-amount-wrapper">
+                                <span class="price-btn-label">Price</span>
+                                <input type="number" class="item-amount" id="item-amount-${item.id}" min="0" step="0.01" value="${item.amount || ''}" placeholder="0.00">
+                            </div>
+                            
+                            <button class="delete-btn delete-green-btn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+
+                        <!-- Collapsed header: caret + text + bold price + delete -->
+                        <div class="item-header-row item-collapsed-row" style="display:none;">
+                            <button class="collapse-btn collapse-green-btn collapsed-toggle-btn" data-bs-toggle="collapse" data-bs-target="#item-container-${item.id}" aria-expanded="false">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </button>
+                            <span class="item-collapsed-name">${item.name || 'Untitled'}</span>
+                            <span class="item-collapsed-price">${item.amount ? '$' + parseFloat(item.amount).toFixed(2) : ''}</span>
+                            <button class="delete-btn delete-green-btn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        
                         <div class="item-container collapse show" id="item-container-${item.id}">
-                            <label for="item-name-${item.id}" class="item-title">Item #${index} Name</label>
-                            <input type="text" class="item-name" id="item-name-${item.id}" value="${item.name}">
-                            <label for="item-amount-${item.id}" class="item-title">Amount</label>
-                            <input type="number" class="item-amount" id="item-amount-${item.id}" min="0" step="0.01" value="${item.amount}" placeholder="(required)">
-                            <button class="button-50 unit-btn" ontouchstart=""><i class="fa-solid fa-repeat"></i> Unit</button>
-                            <label for="item-friends-${item.id}"></label>
-                            <div id="item-friends-${item.id}" class="item-friends"></div>
-                            <div>&emsp;</div>
+                            <div class="item-details-body">
+                                <div class="item-unit-row">
+                                    <button class="btn-unit-toggle unit-btn" ontouchstart=""><i class="fa-solid fa-repeat"></i> Unit</button>
+                                </div>
+                                <div id="item-friends-${item.id}" class="item-friends"></div>
+                            </div>
                         </div>
                     </div>
                 `);
             } else {
-                $($(itemElement).find('label')[0]).html(`Item #${index} Name`);
+                // Update collapsed row text/price in real-time
+                const $collRow = itemElement.find('.item-collapsed-row');
+                $collRow.find('.item-collapsed-name').text(item.name || 'Untitled');
+                $collRow.find('.item-collapsed-price').text(item.amount ? '$' + parseFloat(item.amount).toFixed(2) : '');
             }
-            index++;
         });
         this.updateItemFriends();
     }
@@ -283,40 +351,30 @@ class FriendManager {
         $('#items-list .item .delete-btn').off('click').on('click', (e) => {
             const itemId = parseInt($(e.target).closest('.item').data('id'));
             this.removeItem(itemId);
-            if (this.items.size == 0) {
-                $('#items-list').hide();
-            }
         });
 
+        // When collapse hides (item collapses): show collapsed row, hide expanded row
         $('#items-list .item .item-container').off('hide.bs.collapse').on('hide.bs.collapse', (e) => {
             const itemdiv = $(e.target).closest('.item');
-            const collapseBtn = itemdiv.find('.collapse-btn');
-            // $(collapseBtn).html(`✚`);
-            $(collapseBtn).html(`<i style="font-size:24px" class="fa">&#xf106;</i>`);
+            const itemId = parseInt(itemdiv.data('id'));
+            const item = this.items.get(itemId);
+            const name = itemdiv.find('.item-name').val() || 'Untitled';
+            const amount = itemdiv.find('.item-amount').val();
 
-            const $head = itemdiv.find('.item-head');
-            const $name = itemdiv.find('.item-name')[0].value;
-            const $amount = itemdiv.find('.item-amount')[0].value;
-            const itemID = parseInt($(e.target).closest('.item').data('id'));
-            const titleDiv = `
-                <div class="container-flex-space" style="padding: 0 20%">
-                    <span>${$name ? $name : "&emsp;"}</span>
-                    <span>${$amount ? `$ ${$amount}` : "&emsp;"}</span>
-                </div>
-                `;
-            $head.html(titleDiv);
-            $head.on('click', function(e) {
-                $(`#item-collapse-btn-${itemID}`).trigger('click');                
-            })
+            // Update collapsed row text
+            itemdiv.find('.item-collapsed-name').text(name);
+            itemdiv.find('.item-collapsed-price').text(amount ? '$' + parseFloat(amount).toFixed(2) : '');
+
+            // Swap rows
+            itemdiv.find('.item-expanded-row').hide();
+            itemdiv.find('.item-collapsed-row').show();
         });
         
+        // When collapse shows (item expands): show expanded row, hide collapsed row
         $('#items-list .item .item-container').off('show.bs.collapse').on('show.bs.collapse', (e) => {
             const itemdiv = $(e.target).closest('.item');
-            const collapseBtn = itemdiv.find('.collapse-btn');
-            // $(collapseBtn).html( `▬` );
-            $(collapseBtn).html( `<i style="font-size:24px" class="fa">&#xf107;</i>` );
-            let head = itemdiv.find('.item-head');
-            head.html(`&emsp;`);
+            itemdiv.find('.item-collapsed-row').hide();
+            itemdiv.find('.item-expanded-row').show();
         });
 
         $('#items-list .item .distribute-btn').off('click').on('click', (e) => {
@@ -329,10 +387,12 @@ class FriendManager {
             this.switchUnit(itemId);
         });
 
-        $('#items-list .item .item-container .item-name').off('input').on('input', (e) => {
+        $('#items-list .item .item-name').off('input').on('input', (e) => {
             const itemID = parseInt(e.target.id.split('-')[2]);
             const itemVal = $(e.target).val();
             this.items.get(itemID).name = itemVal;
+            // Sync collapsed row
+            $(e.target).closest('.item').find('.item-collapsed-name').text(itemVal || 'Untitled');
             this.calculate();
         });
 
@@ -347,7 +407,13 @@ class FriendManager {
 
         $('#items-list input[type="number"]').off('input').on('input', (e) => {
             const itemId = parseInt(e.target.id.split('-')[2]);
-            this.items.get(itemId).amount = parseFloat(e.target.value);
+            const val = parseFloat(e.target.value);
+            if (!isNaN(itemId) && this.items.get(itemId)) {
+                this.items.get(itemId).amount = val;
+                // Sync collapsed row price
+                const priceStr = e.target.value ? '$' + parseFloat(e.target.value).toFixed(2) : '';
+                $(e.target).closest('.item').find('.item-collapsed-price').text(priceStr);
+            }
             this.calculate();
         });
 
@@ -649,6 +715,10 @@ class FriendManager {
         $('#add-item').on('click', () => {
             this.addItem();
             $('#items-list').show();
+        });
+
+        $('#manual-entry-btn').on('click', () => {
+            document.getElementById('bill-section').scrollIntoView({ behavior: 'smooth' });
         });
 
         $('#share-result-btn').on('click', async () => {
