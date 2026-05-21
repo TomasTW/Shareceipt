@@ -1,0 +1,283 @@
+/* ==========================================
+   SHARECEIPT DESIGN SYSTEM - COMPONENTS
+   Reusable component styles
+   ========================================== */
+
+/* ==========================================
+   CARD COMPONENT
+   ========================================== */
+.component-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.component-card__header {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  margin: calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) var(--spacing-md) calc(-1 * var(--spacing-lg));
+}
+
+.component-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* ==========================================
+   HEADER COMPONENT
+   ========================================== */
+.component-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) 0;
+}
+
+.component-header__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-grey-dark);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.component-header__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-grey);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================
+   AVATAR COMPONENT
+   ========================================== */
+.component-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.component-avatar--sm {
+  width: 36px;
+  height: 36px;
+  font-size: var(--font-size-xs);
+}
+
+.component-avatar--lg {
+  width: 64px;
+  height: 64px;
+  font-size: var(--font-size-base);
+}
+
+/* ==========================================
+   BUTTON COMPONENTS
+   ========================================== */
+.component-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+/* PRIMARY BUTTON */
+.component-button--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.component-button--primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 4px 6px rgba(20, 0, 74, 0.2);
+}
+
+.component-button--primary:disabled {
+  background-color: var(--color-grey-light);
+  border-color: var(--color-grey-light);
+  color: var(--color-grey);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* SECONDARY BUTTON */
+.component-button--secondary {
+  background-color: var(--color-white);
+  color: var(--color-grey);
+  border-color: var(--color-grey);
+}
+
+.component-button--secondary:hover {
+  background-color: var(--color-light-bg);
+  border-color: var(--color-grey-dark);
+  color: var(--color-grey-dark);
+}
+
+.component-button--secondary:disabled {
+  background-color: var(--color-light-bg);
+  border-color: var(--color-grey-light);
+  color: var(--color-grey-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ==========================================
+   INPUT COMPONENT
+   ========================================== */
+.component-input {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-grey-light);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  gap: var(--spacing-sm);
+  font-family: var(--font-family-primary);
+  transition: var(--transition-fast);
+}
+
+.component-input--default {
+  border-color: var(--color-grey-light);
+}
+
+.component-input--focused {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(48, 0, 176, 0.1);
+  outline: none;
+}
+
+.component-input--disabled {
+  background-color: var(--color-light-bg);
+  border-color: var(--color-grey-light);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.component-input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.component-input__field {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  color: var(--color-grey-dark);
+  outline: none;
+}
+
+.component-input__field::placeholder {
+  color: var(--color-grey-light);
+}
+
+/* ==========================================
+   RECEIPT ROW COMPONENT
+   ========================================== */
+.component-receipt-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-md);
+  gap: var(--spacing-md);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+}
+
+.component-receipt-row__label {
+  flex: 1;
+  color: var(--color-grey-dark);
+  font-weight: var(--font-weight-normal);
+  white-space: nowrap;
+}
+
+.component-receipt-row__value {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.component-receipt-row__divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-grey-light);
+  margin: var(--spacing-sm) 0;
+}
+
+/* ==========================================
+   LAYOUT UTILITIES
+   ========================================== */
+.layout-flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.layout-flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.layout-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-auto-columns: 1fr;
+}
+
+/* ==========================================
+   RESPONSIVE UTILITIES
+   ========================================== */
+@media (max-width: 640px) {
+  .component-card {
+    padding: var(--spacing-md);
+  }
+
+  .component-button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .layout-flex-row {
+    flex-direction: column;
+    width: 100%;
+  }
+}
