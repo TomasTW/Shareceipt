@@ -229,7 +229,7 @@ class FriendManager {
                         </div>
                         <div class="participant-input-wrapper">
                             <input type="number" value="${percentage}" min="0" max="100" step="1" class="percentage-input" ${item.getParticipantChecked(friendId) === false ? "disabled" : ""}> 
-                            <span class="unit-text">${item.getUnitType() == ItemType.kTypePercent ? '%' : 'share(s)'}</span>
+                            <span class="unit-text">%</span>
                         </div>
                         <div class="participant-toggle-box">
                             <i class="fa-solid fa-xmark"></i>
@@ -299,8 +299,7 @@ class FriendManager {
                             </div>
                             
                             <div class="item-amount-wrapper">
-                                <span class="price-btn-label">Price</span>
-                                <input type="number" class="item-amount" id="item-amount-${item.id}" min="0" step="0.01" value="${item.amount || ''}" placeholder="0.00">
+                                <input type="number" class="item-amount" id="item-amount-${item.id}" min="0" step="0.01" value="${item.amount || ''}" placeholder="Price">
                             </div>
                             
                             <button class="delete-btn delete-green-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -318,9 +317,6 @@ class FriendManager {
                         
                         <div class="item-container collapse show" id="item-container-${item.id}">
                             <div class="item-details-body">
-                                <div class="item-unit-row">
-                                    <button class="btn-unit-toggle unit-btn" ontouchstart=""><i class="fa-solid fa-repeat"></i> Unit</button>
-                                </div>
                                 <div id="item-friends-${item.id}" class="item-friends"></div>
                             </div>
                         </div>
@@ -382,10 +378,6 @@ class FriendManager {
             this.autoDistribute(itemId);
         });
 
-        $('#items-list .item .unit-btn').off('click').on('click', (e) => {
-            const itemId = parseInt($(e.target).closest('.item').data('id'));
-            this.switchUnit(itemId);
-        });
 
         $('#items-list .item .item-name').off('input').on('input', (e) => {
             const itemID = parseInt(e.target.id.split('-')[2]);
@@ -532,6 +524,7 @@ class FriendManager {
     }
 
     showResult(originalAmount, totalAmount, results) {
+        const ratio = originalAmount > 0 ? (totalAmount / originalAmount) : 1;
         $('#total-amount').html(totalAmount.toFixed(2));
         $('#total-amount-input').attr('placeholder', totalAmount.toFixed(2));
 
@@ -546,45 +539,49 @@ class FriendManager {
             const owedPercent = results.get(fid).total / resultTotal;
             const totalAmountOwed = totalAmount * owedPercent;
             resultsOutput.append(`
-                <div>
-                    <div class="result-output-friend-container" id="result-output-friend-${fid}-container">
-                        <span class="result-output-friend friend-name" style="background-color:${friend.rgbString}">
-                            ${friend.name}&emsp;$${isNaN(totalAmountOwed) ? 0 : totalAmountOwed.toFixed(2)} 
-                            <small class="result-output-percentage"><small><small style="font-weight:300;">(${isNaN(owedPercent) ? 0 : (owedPercent*100).toFixed(4)}%)</small></small></small>
-                            ${
-                                (isNaN(totalAmountOwed) || totalAmountOwed == 0) ? 
-                                    '' :
-                                    `<span class="result-output-detail" style="background-color:${friend.rgbString}">
-                                        <div class="container-flex-space result-output-detail-topic">
-                                            <h5 style="color:rgb(255, 254, 251); display: inline;"><small>${friend.name}'s Item Summary</small></h5> 
-                                            <i class="fa-regular fa-clipboard" id="copy-btn-${fid}"></i>
-                                        </div>
-                                        ${
-                                            Array.from(results.get(fid).items.entries()).map(([itemID, percentage]) => {
-                                                const item = this.items.get(itemID);
-                                                if (item) {
-                                                    const itemName = (item.name === null || item.name === undefined || item.name.trim() === '') ? '&lt;Unnamed&gt;' : item.name;
-                                                    const itemAmount = (item.amount * percentage) * (totalAmount/originalAmount);
-                                                    return `<div class="result-output-friend-item container-flex-space">
-                                                            <span>${itemName}</span>
-                                                            <span>$${itemAmount.toFixed(2)}</span>
-                                                        </div>`
-                                                }
-                                                return '';
-                                            }).join('')
-                                        }
-                                    </span>`
-                            }
-                        </span>
+                <div class="result-output-friend-container" id="result-output-friend-${fid}-container">
+                    <div class="result-capsule">
+                        <div class="result-avatar" style="background-color:${friend.rgbString};">
+                            ${friend.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="result-info">
+                            <span class="result-name">${friend.name}</span>
+                            <span class="result-amount">$${isNaN(totalAmountOwed) ? 0 : totalAmountOwed.toFixed(2)}</span>
+                        </div>
                     </div>
+                    
+                    ${
+                        (isNaN(totalAmountOwed) || totalAmountOwed == 0) ? 
+                            '' :
+                            `<span class="result-output-detail" style="background-color:${friend.rgbString}">
+                                <div class="container-flex-space result-output-detail-topic">
+                                    <h5 style="color:rgb(255, 254, 251); display: inline;">
+                                        <small>${friend.name}'s Summary <span style="font-weight:300; font-size:10px; opacity:0.85;">(${isNaN(owedPercent) ? 0 : (owedPercent*100).toFixed(2)}%)</span></small>
+                                    </h5> 
+                                    <i class="fa-regular fa-clipboard" id="copy-btn-${fid}"></i>
+                                </div>
+                                ${
+                                    Array.from(results.get(fid).items.entries()).map(([itemID, percentage]) => {
+                                        const item = this.items.get(itemID);
+                                        if (item) {
+                                            const itemName = (item.name === null || item.name === undefined || item.name.trim() === '') ? '&lt;Unnamed&gt;' : item.name;
+                                            const itemAmount = (item.amount * percentage) * ratio;
+                                            return `<div class="result-output-friend-item container-flex-space">
+                                                    <span>${itemName}</span>
+                                                    <span>$${itemAmount.toFixed(2)}</span>
+                                                </div>`
+                                        }
+                                        return '';
+                                    }).join('')
+                                }
+                            </span>`
+                    }
                 </div>
             `);
 
             $(`#result-output-friend-${fid}-container`).on('click', function(e) {
                 const $detail = $(this).find('.result-output-detail');
                 $detail.toggle();
-                const $percentage = $(this).find('.result-output-percentage');
-                $percentage.toggle();
             });
             $(`#result-output-friend-${fid}-container`).hover(
                 function(e) { /* mouseenter */ 
@@ -593,20 +590,12 @@ class FriendManager {
                         if ($detail.is(':hidden')) {
                             $detail.toggle();
                         }
-                        const $percentage = $(this).find('.result-output-percentage');
-                        if ($percentage.is(':hidden')) {
-                            $percentage.toggle();
-                        }
                     }
                 },
                 function(e) { /* mouseleave */
                     const $detail = $(this).find('.result-output-detail');
                     if (!$detail.is(':hidden')) {
                         $detail.toggle();
-                    }
-                    const $percentage = $(this).find('.result-output-percentage');
-                    if (!$percentage.is(':hidden')) {
-                        $percentage.toggle();
                     }
                 }
             );
@@ -620,7 +609,7 @@ class FriendManager {
                         const item = this.items.get(itemID);
                         if (item) {
                             const itemName = (item.name === null || item.name === undefined || item.name.trim() === '') ? '<Unnamed>' : item.name;
-                            const itemAmount = (item.amount * percentage) * (totalAmount/originalAmount);
+                            const itemAmount = (item.amount * percentage) * ratio;
                             return `📦 ${itemName} $${itemAmount.toFixed(2)}\n`
                         }
                         return '';
@@ -818,7 +807,7 @@ class FriendManager {
                 }]
             };
 
-            $('#receipt-upload-btn .fa-arrow-up-from-bracket').hide(); 
+            $('#receipt-upload-btn .fa-camera').hide(); 
             $('#receipt-upload-btn .fa-spinner').show();
 
             $.ajax({
@@ -852,9 +841,9 @@ class FriendManager {
                             $.each(data.items, (i, item) => {
                                 this.addItem(item.name, item.amount)
                             });
-                            this.items.forEach((_, iid) => {
-                                $(`#item-container-${iid}`).closest('.item').find('.collapse-btn').click()
-                            });
+                             this.items.forEach((_, iid) => {
+                                 $(`#item-collapse-btn-${iid}`).click();
+                             });
                         } catch (e) {
                             console.error('JSON parsing error:', e);
                             window.alert("[Error] There was an error processing the model's reply. Please try again.");
@@ -876,7 +865,7 @@ class FriendManager {
                 },
                 complete: () => {
                     $('#receipt-upload-btn .fa-spinner').hide();
-                    $('#receipt-upload-btn .fa-arrow-up-from-bracket').show();
+                    $('#receipt-upload-btn .fa-camera').show();
                     $('#receipt-upload-input').val();
                 }
             });

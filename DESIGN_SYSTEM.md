@@ -14,12 +14,12 @@ Comprehensive design system for the Shareceipt application, extracted from Penci
 ### Colors
 
 #### Primary Colors
-- **Primary**: `#0d9488` - Main brand color (teal)
-- **Primary Dark**: `#0a7368` - Darker shade for hover states
-- **Primary Light**: `#14b8a6` - Lighter shade for backgrounds
+- **Primary**: `#3000b0` - Main brand color (indigo/purple)
+- **Primary Dark**: `#1d027a` - Darker shade for hover states
+- **Primary Light**: `#eae6f7` - Lighter shade for backgrounds
 
 #### Neutral Colors
-- **White**: `#fffefdd` - Main background
+- **White**: `#fffefd` - Main background
 - **Light Grey**: `#f9f9fc` - Secondary background
 - **Grey Light**: `#bccac0` - Borders and dividers
 - **Grey**: `#666666` - Secondary text

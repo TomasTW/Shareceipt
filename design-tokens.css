@@ -5,12 +5,13 @@
 
 :root {
   /* COLOR TOKENS - PRIMARY */
-  --color-primary: #0d9488;
-  --color-primary-dark: #0a7368;
-  --color-primary-light: #14b8a6;
+  --color-primary: #3000b0;
+  --color-primary-dark: #1d027a;
+  --color-color-primary-light: #eae6f7; /* Maintain legacy compatibility */
+  --color-primary-light: #eae6f7;
 
   /* COLOR TOKENS - NEUTRAL */
-  --color-white: #fffefdd;
+  --color-white: #fffefd;
   --color-light-bg: #f9f9fc;
   --color-grey-light: #bccac0;
   --color-grey: #666666;
@@ -65,7 +66,7 @@
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 
   /* SHADOWS */
