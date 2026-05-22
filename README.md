@@ -17,7 +17,7 @@ Shareceipt is a simple and intuitive web app designed to make splitting bills an
 
    * Visit [Google AI Studio](https://aistudio.google.com/app/apikey) and create an API key.
    * Click **"Create API Key"**, then copy the key 
-        * The key may look like: `AIzaSyDlORKwMLa9AmMBgXUnbLkplXSlUXHnYiU`.
+        * The key may look like: ``.
         * **Important:** Do not share your API key with others.
 
 2. **Input Your API Key**
