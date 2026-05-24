@@ -689,6 +689,7 @@ class FriendManager {
                 'color': '',
                 'user-select': ''
             });      
+            $('.total-amount-container .currency-symbol').css('color', '');
         });
         $('#detail-amount-container').off('show.bs.collapse').on('show.bs.collapse', (e) => {
             $('.total-amount-container .collapse-btn .fa-angle-down').show();
@@ -697,6 +698,7 @@ class FriendManager {
                 'color': 'transparent',
                 'user-select': 'none'
             });
+            $('.total-amount-container .currency-symbol').css('color', 'transparent');
         });
     }
 
