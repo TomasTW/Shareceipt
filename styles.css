@@ -600,6 +600,9 @@ body {
     gap: 16px;
     min-height: 50px;
 }
+.item-collapsed-row {
+    padding-bottom: 8px !important;
+}
 
 /* Square caret toggle button */
 .collapse-green-btn {
