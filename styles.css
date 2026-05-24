@@ -877,6 +877,20 @@ body {
     background-color: #f8fafc;
 }
 
+/* Dynamic toggling between active (minus) and inactive (plus) icons */
+.item-friend input[type="checkbox"]:checked + label .participant-toggle-box .active-icon {
+    display: inline-block;
+}
+.item-friend input[type="checkbox"]:checked + label .participant-toggle-box .inactive-icon {
+    display: none;
+}
+.item-friend input[type="checkbox"]:not(:checked) + label .participant-toggle-box .active-icon {
+    display: none;
+}
+.item-friend input[type="checkbox"]:not(:checked) + label .participant-toggle-box .inactive-icon {
+    display: inline-block;
+}
+
 /* Bottom "+ Add" item button — centered, clean */
 .btn-add-item {
     width: 100%;
