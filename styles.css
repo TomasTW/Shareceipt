@@ -919,6 +919,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 80px;
+    padding: 16px;
 }
 #bill-section .card-body.empty-state .btn-add-item {
     padding: 8px 0;
