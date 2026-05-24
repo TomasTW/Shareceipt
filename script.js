@@ -130,6 +130,10 @@ class FriendManager {
     }
 
     removeFriend(id) {
+        const friend = this.friends.get(id);
+        if (friend && friend.name === 'Amelia') {
+            return;
+        }
         this.friends.delete(id);
         this.updateFriendList();
     }
@@ -158,7 +162,7 @@ class FriendManager {
                             <div class="friend-avatar" style="background-color: ${friend.rgbString};">
                                 ${initials}
                             </div>
-                            <button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>
+                            ${friend.name !== 'Amelia' ? `<button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>` : ''}
                         </div>
                         <span class="friend-name" data-id="${friend.id}">${friend.name}</span>
                     </div>
