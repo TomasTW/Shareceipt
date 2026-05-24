@@ -964,6 +964,7 @@ body {
 }
 .summary-amount-title span {
     font-weight: 800;
+    color: var(--primary-color);
 }
 .currency-symbol {
     color: var(--primary-color);
