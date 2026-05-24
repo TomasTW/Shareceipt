@@ -1112,7 +1112,7 @@ body {
     gap: 10px;
     background-color: var(--primary-light); /* Soft lavender background #eae6f7 */
     border-radius: 9999px; /* Pill shape capsule */
-    padding: 16px;
+    padding: 8px;
     margin: 16px;
     box-shadow: var(--shadow-sm);
     cursor: pointer;
