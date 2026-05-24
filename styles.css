@@ -441,7 +441,7 @@ body {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    padding: 8px !important;
+    padding: 0 !important;
     align-items: center;
     scrollbar-width: none;
     margin: 16px;
