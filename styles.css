@@ -442,6 +442,7 @@ body {
     padding: 4px 4px 8px 4px;
     align-items: center;
     scrollbar-width: none;
+    margin: 16px;
 }
 .friends-scroll-wrapper::-webkit-scrollbar {
     display: none;
