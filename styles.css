@@ -192,12 +192,14 @@
   }
 
   button {
+    font-family: inherit;
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }
 
   input {
+    font-family: inherit;
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
