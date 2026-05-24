@@ -1103,7 +1103,7 @@ body {
     gap: 16px;
     margin-bottom: 24px;
 }
-@media (max-width: 480px) {
+@media (max-width: 380px) {
     .results-list {
         grid-template-columns: 1fr; /* Responsive grid layout on narrow viewports */
     }
