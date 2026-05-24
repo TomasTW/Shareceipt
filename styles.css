@@ -606,12 +606,12 @@ body {
 
 /* Square caret toggle button */
 .collapse-green-btn {
-    background-color: #ffffff;
-    color: var(--secondary-color);
+    background-color: transparent;
+    color: var(--surface-secondary);
     width: 30px;
     height: 30px;
     border-radius: 6px;
-    border: 2px solid var(--secondary-color);
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -623,7 +623,7 @@ body {
     transition: var(--transition-smooth);
 }
 .collapse-green-btn:hover {
-    background-color: #ecfdf5;
+    background-color: var(--color-gray-50);
 }
 
 /* Item name input (shown in expanded state) */
@@ -703,9 +703,9 @@ body {
 
 /* Square green delete button */
 .delete-green-btn {
-    background-color: #ffffff;
-    border: 2px solid var(--secondary-color);
-    color: var(--secondary-color);
+    background-color: transparent;
+    border: none;
+    color: var(--surface-secondary);
     width: 30px;
     height: 30px;
     border-radius: 6px;
@@ -720,7 +720,7 @@ body {
     transition: var(--transition-smooth);
 }
 .delete-green-btn:hover {
-    background-color: #ecfdf5;
+    background-color: var(--color-gray-50);
     transform: scale(1.05);
 }
 
