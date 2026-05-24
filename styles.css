@@ -439,7 +439,7 @@ body {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    padding: 4px 4px 8px 4px;
+    padding: 16px;
     align-items: center;
     scrollbar-width: none;
     margin: 16px;
