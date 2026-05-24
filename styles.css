@@ -596,7 +596,7 @@ body {
 .item-header-row {
     display: flex;
     align-items: center;
-    padding: 8px 16px;
+    padding: 16px 16px 4px 16px;
     gap: 16px;
     min-height: 50px;
 }
