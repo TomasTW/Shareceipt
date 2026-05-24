@@ -4,18 +4,81 @@
    ========================================== */
 
 :root {
+  /* ==========================================
+     FIGMA PRIMITIVE VARIABLE COLLECTION
+     ========================================== */
+  
+  /* Color Tokens - Brand (Tailwind-derived) */
+  --color-brand-50: #eae6f7;
+  --color-brand-100: #bfb0e7;
+  --color-brand-300: #7454ca;
+  --color-brand-500: #3000b0;
+  --color-brand-700: #22007d;
+  --color-brand-900: #14004a;
+
+  /* Color Tokens - Gray (Tailwind-derived) */
+  --color-gray-0: #fffefd;
+  --color-gray-50: #f0f0f0;
+  --color-gray-100: #d0d0d0;
+  --color-gray-300: #989898;
+  --color-gray-500: #666666;
+  --color-gray-700: #484848;
+  --color-gray-900: #2b2b2b;
+
+  /* Radius Tokens */
+  --radius-primitive-0: 0px;
+  --radius-primitive-sm: 4px;
+  --radius-primitive-md: 8px;
+  --radius-primitive-lg: 12px;
+  --radius-primitive-xl: 16px;
+  --radius-primitive-2xl: 20px;
+  --radius-primitive-3xl: 24px;
+  --radius-primitive-4xl: 28px;
+  --radius-primitive-5xl: 32px;
+  --radius-primitive-full: 9999px;
+
+  /* Spacing Tokens */
+  --spacing-primitive-zero: 0px;
+  --spacing-primitive-xxs: 2px;
+  --spacing-primitive-xs: 4px;
+  --spacing-primitive-sm: 8px;
+  --spacing-primitive-base: 12px;
+  --spacing-primitive-lg: 16px;
+  --spacing-primitive-xl: 20px;
+  --spacing-primitive-2xl: 24px;
+  --spacing-primitive-3xl: 32px;
+  --spacing-primitive-4xl: 40px;
+  --spacing-primitive-5xl: 48px;
+
+  /* Size Tokens */
+  --size-primitive-zero: 0px;
+  --size-primitive-xxs: 2px;
+  --size-primitive-xs: 4px;
+  --size-primitive-sm: 8px;
+  --size-primitive-base: 12px;
+  --size-primitive-lg: 16px;
+  --size-primitive-xl: 20px;
+  --size-primitive-2xl: 24px;
+  --size-primitive-3xl: 32px;
+  --size-primitive-4xl: 40px;
+  --size-primitive-5xl: 48px;
+
+  /* ==========================================
+     SEMANTIC DESIGN SYSTEM TOKENS
+     ========================================== */
+
   /* COLOR TOKENS - PRIMARY */
-  --color-primary: #3000b0;
-  --color-primary-dark: #1d027a;
-  --color-color-primary-light: #eae6f7; /* Maintain legacy compatibility */
-  --color-primary-light: #eae6f7;
+  --color-primary: var(--color-brand-500);
+  --color-primary-dark: var(--color-brand-700);
+  --color-color-primary-light: var(--color-brand-50); /* Maintain legacy compatibility */
+  --color-primary-light: var(--color-brand-50);
 
   /* COLOR TOKENS - NEUTRAL */
-  --color-white: #fffefd;
+  --color-white: var(--color-gray-0);
   --color-light-bg: #f9f9fc;
   --color-grey-light: #bccac0;
-  --color-grey: #666666;
-  --color-grey-dark: #2b2b2b;
+  --color-grey: var(--color-gray-500);
+  --color-grey-dark: var(--color-gray-900);
   --color-black: #1a1a1a;
 
   /* BACKGROUND COLORS */
@@ -55,19 +118,19 @@
   --line-height-relaxed: 1.5;
 
   /* SPACING SCALE */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 24px;
-  --spacing-2xl: 32px;
+  --spacing-xs: var(--spacing-primitive-xs);
+  --spacing-sm: var(--spacing-primitive-sm);
+  --spacing-md: var(--spacing-primitive-base);
+  --spacing-lg: var(--spacing-primitive-lg);
+  --spacing-xl: var(--spacing-primitive-2xl);
+  --spacing-2xl: var(--spacing-primitive-3xl);
 
   /* BORDER RADIUS */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
+  --radius-xs: var(--radius-primitive-sm);
+  --radius-sm: var(--radius-primitive-md);
+  --radius-md: var(--radius-primitive-lg);
+  --radius-lg: var(--radius-primitive-3xl);
+  --radius-full: var(--radius-primitive-full);
 
   /* SHADOWS */
   --shadow-sm: 0 0.875px 0.875px rgba(20, 0, 74, 0.169), 0 0.875px 0.875px rgba(20, 0, 74, 0.144);
