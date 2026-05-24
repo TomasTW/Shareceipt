@@ -67,6 +67,17 @@
      SEMANTIC DESIGN SYSTEM TOKENS
      ========================================== */
 
+  /* COLOR TOKENS - FIGMA TOKENS (SEMANTIC ALIASES) */
+  --surface-primary: var(--color-gray-0);
+  --surface-secondary: var(--color-gray-500);
+  --surface-invert: var(--color-gray-900);
+  --surface-brand: var(--color-brand-500);
+
+  --text-primary-figma: var(--color-gray-900);
+  --text-secondary-figma: var(--color-gray-500);
+  --text-invert-figma: var(--color-gray-50);
+  --text-brand-figma: var(--color-brand-500);
+
   /* COLOR TOKENS - PRIMARY */
   --color-primary: var(--color-brand-500);
   --color-primary-dark: var(--color-brand-700);
@@ -82,15 +93,15 @@
   --color-black: #1a1a1a;
 
   /* BACKGROUND COLORS */
-  --bg-primary: var(--color-white);
+  --bg-primary: var(--surface-primary);
   --bg-secondary: var(--color-light-bg);
-  --bg-accent: var(--color-primary);
+  --bg-accent: var(--surface-brand);
 
   /* TEXT COLORS */
-  --text-primary: var(--color-grey-dark);
-  --text-secondary: var(--color-grey);
+  --text-primary: var(--text-primary-figma);
+  --text-secondary: var(--text-secondary-figma);
   --text-light: var(--color-grey-light);
-  --text-inverse: var(--color-white);
+  --text-inverse: var(--text-invert-figma);
 
   /* TYPOGRAPHY */
   --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
