@@ -879,9 +879,9 @@ body {
     width: 100%;
     background-color: transparent;
     color: var(--secondary-color);
-    border: none;
-    border-radius: 0;
-    padding: 8px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--radius-md);
+    padding: 10px 24px;
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 14px;
@@ -894,19 +894,27 @@ body {
     gap: 6px;
 }
 .plus-circle-green {
-    width: 22px;
-    height: 22px;
-    border: 2px solid var(--secondary-color);
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--secondary-color);
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 11px;
+    font-size: 10px;
+    color: var(--secondary-color);
     flex-shrink: 0;
+    transition: var(--transition-smooth);
 }
 .btn-add-item:hover {
+    background-color: #ecfdf5;
     color: var(--secondary-hover);
-    transform: translateY(-1px);
+    border-color: var(--secondary-hover);
+    transform: translateY(-2px);
+}
+.btn-add-item:hover .plus-circle-green {
+    border-color: var(--secondary-hover);
+    color: var(--secondary-hover);
 }
 .btn-add-item:active {
     transform: translateY(0);
@@ -920,9 +928,6 @@ body {
     justify-content: center;
     min-height: 80px;
     padding: 16px;
-}
-#bill-section .card-body.empty-state .btn-add-item {
-    padding: 8px 0;
 }
 
 /* ==========================================
