@@ -236,7 +236,7 @@ class FriendManager {
                             <span class="unit-text">%</span>
                         </div>
                         <div class="participant-toggle-box">
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fa-solid fa-minus"></i>
                         </div>
                     </div>
                 `);

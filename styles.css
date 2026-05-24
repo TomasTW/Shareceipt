@@ -844,13 +844,13 @@ body {
     width: 28px;
     height: 28px;
     flex-shrink: 0;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--surface-secondary);
     border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    color: var(--secondary-color);
+    color: var(--surface-secondary);
     background-color: #ffffff;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -861,9 +861,9 @@ body {
     display: none;
 }
 .item-friend input[type="checkbox"]:checked + label .participant-toggle-box {
-    border-color: var(--secondary-color);
-    color: var(--secondary-color);
-    background-color: #ecfdf5;
+    border-color: var(--surface-secondary);
+    color: var(--surface-secondary);
+    background-color: var(--color-gray-50);
 }
 .item-friend input[type="checkbox"]:not(:checked) + label .participant-toggle-box {
     border-color: #d1d5db;
