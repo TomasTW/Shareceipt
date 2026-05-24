@@ -601,7 +601,7 @@ body {
     min-height: 50px;
 }
 .item-collapsed-row {
-    padding-bottom: 8px !important;
+    padding-bottom: 16px !important;
 }
 
 /* Square caret toggle button */
