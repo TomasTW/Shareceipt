@@ -401,14 +401,14 @@ body {
     transition: var(--transition-smooth);
 }
 .btn-outline-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: 1.5px solid var(--primary-color);
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
+    font-size: 14px;
     color: var(--primary-color);
 }
 .btn-outline:hover {
@@ -616,7 +616,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     flex-shrink: 0;
     padding: 0;
     margin: 0 !important;
@@ -714,7 +714,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     padding: 0;
     margin: 0 !important;
     transition: var(--transition-smooth);
@@ -849,7 +849,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--surface-secondary);
     background-color: #ffffff;
     cursor: pointer;
@@ -911,14 +911,14 @@ body {
     gap: 6px;
 }
 .plus-circle-green {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: 1.5px solid var(--primary-color);
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
+    font-size: 14px;
     color: var(--primary-color);
     flex-shrink: 0;
     transition: var(--transition-smooth);
