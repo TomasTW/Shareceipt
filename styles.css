@@ -441,7 +441,7 @@ body {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    padding: 0 !important;
+    padding: 8px !important;
     align-items: center;
     scrollbar-width: none;
     margin: 16px;
@@ -461,6 +461,7 @@ body {
     gap: 6px;
     width: 60px;
     position: relative;
+    flex-shrink: 0;
 }
 .friend-avatar-container {
     position: relative;
@@ -480,6 +481,7 @@ body {
     box-shadow: var(--shadow-sm);
     transition: var(--transition-smooth);
     border: 2px solid transparent;
+    flex-shrink: 0;
 }
 .friend:nth-child(1) .friend-avatar {
     border-color: transparent;
@@ -540,6 +542,7 @@ body {
     cursor: pointer;
     padding: 0;
     margin: 0 !important;
+    flex-shrink: 0;
 }
 .avatar-circle-add {
     width: 52px;
