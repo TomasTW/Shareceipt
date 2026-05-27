@@ -1,0 +1,42 @@
+# General guidelines
+
+* **Architecture**: Shareceipt is a static single-page app (no server-side persistence). Keep all UI elements in `index.html`, behavioral logic in `script.js`, and styling in `styles.css` / `design-*.css`.
+* **State Management**:
+  * Use the central `FriendManager` class (in `script.js`) to drive state.
+  * Keep `FriendManager.friends` and `FriendManager.items` as Maps keyed by numeric IDs (`Friend.nextId` and `Item.nextId`).
+  * Prefer updating model objects and triggering UI re-render functions (e.g., `updateFriendList()`, `updateItemsList()`) rather than directly mutating the DOM.
+* **DOM Selectors**: Ensure stable DOM IDs and classes are preserved. If elements in `index.html` are refactored or renamed, update the corresponding jQuery selectors across `script.js`.
+* **Receipt Analysis**:
+  * The receipt parsing via the Gemini API (`FriendManager.analyzeReceipt()`) relies on a specific prompt layout.
+  * It expects the response to contain a markdown JSON block:
+    ```json
+    { "items": [{ "name": "...", "amount": 0.0 }], "total": 0.0 }
+    ```
+  * Maintain this format strictly, as `analyzeReceipt()` parses it using a regular expression (`/```json\s*([\s\S]*?)\s*```/`).
+* **API Key Handling**: Retrieve and save the Google API key using `localStorage.getItem('apiKey')` / `localStorage.setItem('apiKey', value)`. If API key becomes invalid or is cleared, handle it gracefully in the UI.
+
+--------------
+
+# Design system guidelines
+
+Always leverage Shareceipt's design tokens and components to keep the user interface consistent and premium.
+
+* **Typography**:
+  * Use `Poppins` as the primary font family (`--font-family-primary`).
+  * Semantic sizes: XS (`12px`), SM (`14px`), Base (`16px`), LG (`20px`), XL (`24px`), 2XL (`32px`).
+  * Avoid raw hardcoded pixel sizes in new elements; instead use semantic classes (`.text-heading-1`, `.text-heading-2`, `.text-body`, `.text-small`) and variables.
+* **Colors**:
+  * Strictly use design system CSS variables in styles (e.g., `var(--color-primary)`, `var(--color-primary-dark)`, `var(--surface-primary)`, `var(--surface-secondary)`, `var(--color-grey)`).
+  * Brand primary purple color is `#3000b0` (`--color-primary`).
+* **Spacing & Layout**:
+  * Adhere to the 4px scaling grid: `--spacing-xs` (4px), `--spacing-sm` (8px), `--spacing-md` (12px), `--spacing-lg` (16px), `--spacing-xl` (24px), `--spacing-2xl` (32px).
+  * Use the flex helper classes (`.layout-flex-row`, `.layout-flex-col`) for alignment and standard spacing gaps.
+* **Component-specific styling**:
+  * **Cards**: Use `.component-card` with `component-card__header` and `component-card__content`.
+  * **Avatars**: Use `.component-avatar` for user initial badges (standard size 48px, `--sm` 36px, `--lg` 64px).
+  * **Buttons**: Use primary (`.component-button--primary`) and secondary (`.component-button--secondary`) styles.
+  * **Inputs**: Use `.component-input` wrapper with `.component-input__icon` and `.component-input__field`.
+  * **Interactive Row Elements**:
+    * Keep all functional item/shares row icon font-sizes at exactly `14px` (`--font-size-sm`).
+    * Item header borderless buttons should be exactly `24px` in size, use borderless styles, and use the `var(--surface-secondary)` color.
+    * Participant toggle boxes must dynamically toggle between a plus/minus icon depending on participant active state, and use the `var(--surface-secondary)` background or border styling.
