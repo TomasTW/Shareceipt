@@ -116,7 +116,7 @@ class FriendManager {
 
     initializeFriends() {
         this.friendListElement.empty();
-        this.addFriend('Me');
+        this.addFriend('Amelia');
     }
     initializeItems() {
         this.itemsListElement.empty();
@@ -131,7 +131,7 @@ class FriendManager {
 
     removeFriend(id) {
         const friend = this.friends.get(id);
-        if (friend && (friend.name === 'Me' || friend.id === 1)) {
+        if (friend && (friend.name === 'Amelia' || friend.id === 1)) {
             return;
         }
         this.friends.delete(id);
@@ -152,7 +152,7 @@ class FriendManager {
             if (!friendElement.length) {
                 // Determine Initials or photo placeholder
                 let initials = 'ME';
-                if (friend.name !== 'Me' && friend.name !== 'Friend1') {
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
                     initials = friend.name.substring(0, 2).toUpperCase();
                 }
                 
@@ -162,7 +162,7 @@ class FriendManager {
                             <div class="friend-avatar" style="background-color: ${friend.rgbString};">
                                 ${initials}
                             </div>
-                            ${friend.name !== 'Me' ? `<button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>` : ''}
+                            ${friend.name !== 'Amelia' ? `<button class="delete-btn" data-id="${friend.id}"><i class="fa-solid fa-xmark"></i></button>` : ''}
                         </div>
                         <span class="friend-name" data-id="${friend.id}">${friend.name}</span>
                     </div>
@@ -171,7 +171,7 @@ class FriendManager {
                 friendElement[0].innerHTML = friend.name;
                 // Update avatar initials if name changed
                 let initials = 'ME';
-                if (friend.name !== 'Me' && friend.name !== 'Friend1') {
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
                     initials = friend.name.substring(0, 2).toUpperCase();
                 }
                 $(friendElement).closest('.friend').find('.friend-avatar').text(initials);
@@ -222,7 +222,7 @@ class FriendManager {
                 let friend = this.friends.get(friendId);
 
                 let initials = 'ME';
-                if (friend.name !== 'Me' && friend.name !== 'Friend1') {
+                if (friend.name !== 'Amelia' && friend.name !== 'Friend1') {
                     initials = friend.name.substring(0, 2).toUpperCase();
                 }
 
