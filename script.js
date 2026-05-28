@@ -714,6 +714,11 @@ class FriendManager {
         });
 
         $('#manual-entry-btn').on('click', () => {
+            this.items = new Map();
+            this.initializeItems();
+            $('#total-amount-input').val('');
+            $('#total-amount-additional').val('');
+            this.calculate();
             document.getElementById('bill-section').scrollIntoView({ behavior: 'smooth' });
         });
 
