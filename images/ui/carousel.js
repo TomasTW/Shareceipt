@@ -4,8 +4,8 @@ import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import { cn } from "./utils";
-import { Button } from "./button";
+import { cn } from "./utils.js";
+import { Button } from "./button.js";
 
 const CarouselContext = React.createContext(null);
 
